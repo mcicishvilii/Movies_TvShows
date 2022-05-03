@@ -4,8 +4,8 @@ import com.example.movies_tvshows.Models.PopularResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface PopularsApi {
-    @GET("movie/popular")
+interface PopularTvshowsApi {
+    @GET("tv/popular")
 
     suspend fun getPopularMovies(
         @Query("api_key")
