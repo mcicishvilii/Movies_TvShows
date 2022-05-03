@@ -12,6 +12,7 @@ import com.example.movies_tvshows.API.PopularTvshowsApi
 import com.example.movies_tvshows.API.PopularsApi
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
+import com.example.movies_tvshows.TvShowsAdapter
 import com.example.movies_tvshows.databinding.TvShowsListFragmentBinding
 
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +27,7 @@ class TvShowsListFragment : Fragment() {
     private var _binding: TvShowsListFragmentBinding? = null
 
     private val binding get() = _binding!!
-    private lateinit var moviesAdapter: MoviesAdapter
+    private lateinit var tvShowsAdapter: TvShowsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,9 +52,9 @@ class TvShowsListFragment : Fragment() {
             .create(PopularTvshowsApi::class.java)
 
         CoroutineScope(IO).launch {
-            val response = PopularTvshowsApi.getPopularMovies("843c612d1207fdec63f0e6a5fd426d68")
+            val response = PopularTvshowsApi.getPopularTVshows("843c612d1207fdec63f0e6a5fd426d68")
             withContext(Main){
-                moviesAdapter.updateList(response.results)
+                tvShowsAdapter.updateList(response.results1)
             }
 
         }
@@ -61,27 +62,16 @@ class TvShowsListFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        moviesAdapter = MoviesAdapter(
+        tvShowsAdapter = TvShowsAdapter(
             mutableListOf()
         ).apply {
 
         }
         binding.rvMovies.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.rvMovies.adapter = moviesAdapter
-
-        binding.bntMovies.setOnClickListener {
-            // აქ უნდა გადავიყვანო ამავე კლასში ფილმების სიის ფრაგმენტში
-
-            parentFragmentManager.beginTransaction().apply {
-                replace(R.id.flContent, MoviesListFragment())
-                addToBackStack(MoviesListFragment::javaClass.name)
-                commit()
-            }
+        binding.rvMovies.adapter = tvShowsAdapter
 
             binding.bntMovies.setOnClickListener {
-                // აქ უნდა გადავიყვანო ტვშოუების კლასში - ტვშოუ სიის ფრაგმენტში
-
                 parentFragmentManager.beginTransaction().apply {
                     replace(R.id.flContent, MoviesListFragment())
                     addToBackStack(MoviesListFragment::javaClass.name)
@@ -89,7 +79,6 @@ class TvShowsListFragment : Fragment() {
                 }
             }
         }
-    }
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.movies_tvshows.Fragments.MoviesListFragment
 import com.example.movies_tvshows.databinding.ActivityMainBinding
+import com.facebook.drawee.backends.pipeline.Fresco
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        Fresco.initialize(this)
+        Fresco.initialize(this)
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flContent, MoviesListFragment())
             addToBackStack(MoviesListFragment::javaClass.name)

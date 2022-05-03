@@ -66,20 +66,10 @@ class MoviesListFragment : Fragment() {
         binding.rvMovies.adapter = moviesAdapter
 
             binding.bntTVShows.setOnClickListener {
-            // აქ უნდა გადავიყვანო ამავე კლასში ფილმების სიის ფრაგმენტში
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.flContent, TvShowsListFragment())
                 addToBackStack(TvShowsListFragment::javaClass.name)
                 commit()
-            }
-
-            binding.bntMovies.setOnClickListener {
-                // აქ უნდა გადავიყვანო ტვშოუების კლასში - ტვშოუ სიის ფრაგმენტში
-                parentFragmentManager.beginTransaction().apply {
-                    replace(R.id.flContent, MoviesListFragment())
-                    addToBackStack(MoviesListFragment::javaClass.name)
-                    commit()
-                }
             }
         }
     }

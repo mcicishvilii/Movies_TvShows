@@ -1,13 +1,14 @@
 package com.example.movies_tvshows.API
 
-import com.example.movies_tvshows.Models.PopularResponse
+
+import com.example.movies_tvshows.Models.TVshowModels.TVshowPopularsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface PopularTvshowsApi {
     @GET("tv/popular")
 
-    suspend fun getPopularMovies(
+    suspend fun getPopularTVshows(
         @Query("api_key")
-        apiKey:String): PopularResponse
+        apiKey:String): TVshowPopularsResponse
 }

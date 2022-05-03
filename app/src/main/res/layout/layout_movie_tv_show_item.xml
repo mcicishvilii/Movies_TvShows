@@ -25,7 +25,7 @@
         android:id="@+id/ivImagePoster"
         android:layout_width="95dp"
         android:layout_marginTop="20dp"
-        android:layout_height="120dp"
+        android:layout_height="170dp"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,26 +41,29 @@
         app:layout_constraintTop_toTopOf="@id/ivImagePoster"
         tools:text="Die hard" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <TextView
+        android:id="@+id/tvAverageRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/endGuideline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/ivStar"
-        android:src="@color/purple_700"
-        />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@id/ivImagePoster"
+        app:layout_constraintTop_toBottomOf="@id/tvReleaseDate"
+        tools:text="Die hard" />
+
 
     <TextView
         android:id="@+id/tvRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
         android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/ivStar"
-        app:layout_constraintStart_toStartOf="@id/ivStar"
-        app:layout_constraintEnd_toEndOf="@id/ivStar"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="20dp"
         tools:text="9.5" />
     <TextView
         android:id="@+id/tvReleaseDate"

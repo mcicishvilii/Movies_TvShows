@@ -1,6 +1,6 @@
 package com.example.movies_tvshows.API
 
-import com.example.movies_tvshows.Models.PopularResponse
+import com.example.movies_tvshows.Models.MovieModels.PopularResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

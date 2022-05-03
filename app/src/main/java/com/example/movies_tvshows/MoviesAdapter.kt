@@ -3,7 +3,7 @@ package com.example.movies_tvshows
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movies_tvshows.Models.MovieItem
+import com.example.movies_tvshows.Models.MovieModels.MovieItem
 import com.example.movies_tvshows.databinding.LayoutMovieTvShowItemBinding
 
 class MoviesAdapter(val movieList: MutableList<MovieItem>) : RecyclerView.Adapter<MoviesViewHolder>() {
@@ -28,7 +28,6 @@ class MoviesAdapter(val movieList: MutableList<MovieItem>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val movie = movieList[position]
         holder.binding.tvMovieName.text = movie.originalTitle
-//        holder.binding.ivImagePoster.setImageURI("https://image.tmdb.org/t/p/w500${movie.posterPath}")
         holder.binding.tvRating.text = movie.voteAverage.toString()
         holder.binding.tvReleaseDate.text = movie.releaseDate.toString()
 
