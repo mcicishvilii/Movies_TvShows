@@ -24,9 +24,18 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
-            android:src="@color/purple_200"
+            android:src="@color/teal_700"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintTop_toBottomOf="@id/tvMovieName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/ivLargePoster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="70sp"
+            android:text="აქ უნდა იყოს ფილმის პოსტერი"/>
 
         <TextView
             android:id="@+id/tvMovieDescription"

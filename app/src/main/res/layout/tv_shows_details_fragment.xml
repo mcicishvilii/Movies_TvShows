@@ -29,6 +29,15 @@
             app:layout_constraintTop_toBottomOf="@id/tvMovieName" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/ivLargePoster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="70sp"
+            android:text="აქ უნდა იყოს სერიალის პოსტერი"/>
+
+        <TextView
             android:id="@+id/tvMovieDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

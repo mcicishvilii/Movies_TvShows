@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movies_tvshows.API.PopularsApi
+import com.example.movies_tvshows.Models.MovieModels.MovieItem
+import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
 import com.example.movies_tvshows.databinding.MoviesListFragmentBinding
@@ -59,6 +61,13 @@ class MoviesListFragment : Fragment() {
         moviesAdapter = MoviesAdapter(
             mutableListOf()
         ).apply {
+            setOnItemCLickListener { movieItem: Result1, i ->
+                parentFragmentManager.beginTransaction().apply {
+                    replace(R.id.flContent, MoviesDetailsFragment.newInstance(movieItem.original_title, movieItem.overview))
+                    addToBackStack(MoviesDetailsFragment::javaClass.name)
+                    commit()
+                }
+            }
 
         }
         binding.rvMovies.layoutManager =

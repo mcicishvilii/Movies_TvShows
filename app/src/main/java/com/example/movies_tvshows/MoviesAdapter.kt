@@ -3,12 +3,12 @@ package com.example.movies_tvshows
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movies_tvshows.Models.MovieModels.MovieItem
+import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.databinding.LayoutMovieItemBinding
 
 
-class MoviesAdapter(val movieList: MutableList<MovieItem>) : RecyclerView.Adapter<MoviesViewHolder>() {
-    private lateinit var itemClickListener: (MovieItem, Int) -> Unit
+class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<MoviesViewHolder>() {
+    private lateinit var itemClickListener: (Result1, Int) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val binding =
@@ -16,11 +16,11 @@ class MoviesAdapter(val movieList: MutableList<MovieItem>) : RecyclerView.Adapte
         return MoviesViewHolder(binding)
     }
 
-    fun setOnItemCLickListener(clickListener: (MovieItem, Int) -> Unit) {
+    fun setOnItemCLickListener(clickListener: (Result1, Int) -> Unit) {
         itemClickListener = clickListener
     }
 
-    fun updateList(movies:List<MovieItem>){
+    fun updateList(movies:List<Result1>){
         movieList.clear()
         movieList.addAll(movies)
         notifyDataSetChanged()
@@ -28,10 +28,10 @@ class MoviesAdapter(val movieList: MutableList<MovieItem>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val movie = movieList[position]
-        holder.binding.tvMovieName.text = "title: \n${movie.originalTitle}"
-        holder.binding.tvRating.text = movie.voteAverage.toString()
-        holder.binding.tvReleaseDate.text = "release date: \n${movie.releaseDate.toString()}"
-        holder.binding.tvAverageRating.text = "total votes: \n${movie.voteCount.toString()}"
+        holder.binding.tvMovieName.text = "title: \n${movie.original_title}"
+        holder.binding.tvRating.text = movie.vote_average.toString()
+        holder.binding.tvReleaseDate.text = "release date: \n${movie.release_date.toString()}"
+        holder.binding.tvAverageRating.text = "total votes: \n${movie.vote_count.toString()}"
 
         holder.binding.tvMovieName.setOnClickListener {
             itemClickListener.invoke(movie,position)
