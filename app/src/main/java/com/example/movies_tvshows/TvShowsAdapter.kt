@@ -1,10 +1,12 @@
 package com.example.movies_tvshows
+import android.R
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movies_tvshows.Models.TVshowModels.TvShowItem
-import com.example.movies_tvshows.databinding.LayoutMovieTvShowItemBinding
 import com.example.movies_tvshows.Models.TVshowModels.Result
+import com.example.movies_tvshows.databinding.LayoutMovieTvShowItemBinding
+
 
 class TvShowsAdapter(val TVshowsList: MutableList<Result>) : RecyclerView.Adapter<TvShowsViewholder>() {
     private lateinit var itemClickListener: (Result, Int) -> Unit
@@ -28,10 +30,12 @@ class TvShowsAdapter(val TVshowsList: MutableList<Result>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: TvShowsViewholder, position: Int) {
         val movies = TVshowsList[position]
-        holder.binding.tvMovieName.text = "title: \n${movies.name}"
+        holder.binding.tvMovieName.text = "Title: \n${movies.name}"
         holder.binding.tvRating.text = movies.vote_average.toString()
-        holder.binding.tvAverageRating.text = "popularity \n${movies.popularity.toString()}"
+        holder.binding.ivImagePoster.setImageURI("https://image.tmdb.org/t/p/w500${movies.poster_path}")
+        holder.binding.tvAverageRating.text = "Popularity \n${movies.popularity.toString()}"
         holder.binding.tvReleaseDate.text = "Release Year \n${movies.first_air_date.toString()}"
+
 
 
         holder.binding.tvMovieName.setOnClickListener {

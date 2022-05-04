@@ -3,6 +3,7 @@ package com.example.movies_tvshows
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.databinding.LayoutMovieItemBinding
 
@@ -27,9 +28,11 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
+
         val movie = movieList[position]
         holder.binding.tvMovieName.text = "title: \n${movie.original_title}"
         holder.binding.tvRating.text = movie.vote_average.toString()
+        holder.binding.ivImagePoster.setImageURI("https://image.tmdb.org/t/p/w500${movie.poster_path}")
         holder.binding.tvReleaseDate.text = "release date: \n${movie.release_date.toString()}"
         holder.binding.tvAverageRating.text = "total votes: \n${movie.vote_count.toString()}"
 
@@ -42,6 +45,8 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
         return movieList.size
     }
 }
+
+
 
 class MoviesViewHolder(val binding: LayoutMovieItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
