@@ -1,5 +1,6 @@
 package com.example.movies_tvshows.Fragments
 
+import android.database.CursorJoiner
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movies_tvshows.API.PopularTvshowsApi
 import com.example.movies_tvshows.API.PopularsApi
+import com.example.movies_tvshows.Models.TVshowModels.Result
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
 import com.example.movies_tvshows.TvShowsAdapter
@@ -65,7 +67,13 @@ class TvShowsListFragment : Fragment() {
         tvShowsAdapter = TvShowsAdapter(
             mutableListOf()
         ).apply {
-
+            setOnItemCLickListener { result:Result, i ->
+                parentFragmentManager.beginTransaction().apply {
+                    replace(R.id.flContent,TVshowsDetailsFragment.newInstance(result.name, result.overview))
+                    addToBackStack(TVshowsDetailsFragment::javaClass.name)
+                    commit()
+                }
+            }
         }
         binding.rvMovies.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
