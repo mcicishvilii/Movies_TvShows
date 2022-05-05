@@ -19,24 +19,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <TextView
+            android:gravity="center"
+            android:id="@+id/rvGenres"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/teal_700"
+            android:text="trileri"
+            android:textSize="30sp"
+            />
+
+        <ImageView
             android:id="@+id/ivLargePoster"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
-            android:src="@color/teal_700"
             app:layout_constraintDimensionRatio="1"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieName" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/ivLargePoster"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="70sp"
-            android:text="აქ უნდა იყოს ფილმის პოსტერი"/>
-
+            app:layout_constraintTop_toBottomOf="@id/rvGenres" />
         <TextView
             android:id="@+id/tvMovieDescription"
             android:layout_width="wrap_content"

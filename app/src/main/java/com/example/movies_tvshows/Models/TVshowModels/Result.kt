@@ -1,5 +1,7 @@
 package com.example.movies_tvshows.Models.TVshowModels
 
+
+
 data class Result(
     val backdrop_path: String,
     val first_air_date: String,
@@ -13,5 +15,6 @@ data class Result(
     val popularity: Double,
     val poster_path: String,
     val vote_average: Double,
-    val vote_count: Int
+    val vote_count: Int,
 )
+

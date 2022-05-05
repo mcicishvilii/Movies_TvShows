@@ -64,17 +64,23 @@ class TvShowsListFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
+
+
         tvShowsAdapter = TvShowsAdapter(
             mutableListOf()
         ).apply {
             setOnItemCLickListener { result:Result, i ->
                 parentFragmentManager.beginTransaction().apply {
-                    replace(R.id.flContent,TVshowsDetailsFragment.newInstance(result.name, result.overview))
+                    replace(R.id.flContent,TVshowsDetailsFragment.newInstance(result.name, result.overview,result.poster_path))
                     addToBackStack(TVshowsDetailsFragment::javaClass.name)
                     commit()
                 }
             }
         }
+
+//        "https://image.tmdb.org/t/p/w500${movies.poster_path}"
+
+
         binding.rvMovies.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvMovies.adapter = tvShowsAdapter

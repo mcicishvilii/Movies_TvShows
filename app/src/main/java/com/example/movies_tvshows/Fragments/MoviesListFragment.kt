@@ -63,7 +63,11 @@ class MoviesListFragment : Fragment() {
         ).apply {
             setOnItemCLickListener { movieItem: Result1, i ->
                 parentFragmentManager.beginTransaction().apply {
-                    replace(R.id.flContent, MoviesDetailsFragment.newInstance(movieItem.original_title, movieItem.overview, movieItem.poster_path))
+                    replace(R.id.flContent, MoviesDetailsFragment.newInstance(
+                        movieItem.original_title,
+                        movieItem.overview,
+                        movieItem.poster_path,
+                        movieItem.genre_ids.toString()))
                     addToBackStack(MoviesDetailsFragment::javaClass.name)
                     commit()
                 }

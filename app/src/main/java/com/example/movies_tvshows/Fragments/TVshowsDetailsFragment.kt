@@ -26,9 +26,18 @@ class TVshowsDetailsFragment :Fragment(){
         super.onViewCreated(view, savedInstanceState)
         val tvShowNamefromCompanionObject = requireArguments().getString(KEY_TVSHOW_NAME)
         val tvShowDescfromCompanionObject = requireArguments().getString(KEY_TVSHOW_DESC)
+        val tvShowPosterfromCompanionObject = requireArguments().getString(KEY_TVSHOW_POST)
+        val movieUrl = requireArguments().getString(KEY_TVSHOW_POST)
+        val realMovieUrl = "https://image.tmdb.org/t/p/w500" + movieUrl
 
         binding.tvMovieName.text = tvShowNamefromCompanionObject
         binding.tvMovieDescription.text = tvShowDescfromCompanionObject
+
+
+//        val movieUrl = requireArguments().getString(KEY_TVSHOW_POST)
+        Glide.with(requireContext()).load(realMovieUrl).into(binding.ivLargePoster)
+
+
     }
 
     override fun onDestroyView() {
@@ -40,9 +49,10 @@ class TVshowsDetailsFragment :Fragment(){
     companion object{
         const val KEY_TVSHOW_NAME = "KEY_TVSHOW_NAME"
         const val KEY_TVSHOW_DESC = "KEY_TVSHOW_DESC"
-        fun newInstance(tvShowName: String, tvShowDesc: String) :TVshowsDetailsFragment{
+        const val KEY_TVSHOW_POST = "KEY_TVSHOW_POST"
+        fun newInstance(tvShowName: String, tvShowDesc: String,tvShowPoster:String) :TVshowsDetailsFragment{
             return TVshowsDetailsFragment().apply {
-                arguments = bundleOf(KEY_TVSHOW_NAME to tvShowName, KEY_TVSHOW_DESC to tvShowDesc)
+                arguments = bundleOf(KEY_TVSHOW_NAME to tvShowName, KEY_TVSHOW_DESC to tvShowDesc, KEY_TVSHOW_POST to tvShowPoster)
             }
         }
     }
