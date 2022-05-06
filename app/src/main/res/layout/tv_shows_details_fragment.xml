@@ -2,43 +2,125 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#242A32">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <TextView
             android:id="@+id/tvMovieName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:text="spiderman"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/ivSmallPoster"/>
+
+
+        <ImageView
+            android:id="@+id/ivSmallPoster"
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:elevation="1dp"
+            android:layout_marginTop="-80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvMovieName"
+            app:layout_constraintTop_toBottomOf="@id/ivLargePoster"
+            android:src="@color/black"
+            />
 
         <ImageView
             android:id="@+id/ivLargePoster"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieName" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/iv_aboutMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Movie"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/ivSmallPoster"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:textSize="30sp"
+            android:layout_marginTop="30dp"
+            />
 
         <TextView
             android:id="@+id/tvMovieDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"
+            android:layout_marginTop="20dp"
             android:text=""
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivLargePoster" />
+            app:layout_constraintTop_toBottomOf="@id/iv_aboutMovie" />
+
+
+        <TextView
+            android:id="@+id/tvReleaseDateDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            app:layout_goneMarginTop="30dp"
+            android:layout_marginStart="20dp"
+            android:text="release year"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDescription" />
+
+        <TextView
+            android:id="@+id/tvAverageRatingDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            app:layout_goneMarginTop="30dp"
+            android:text="rating"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvReleaseDateDetails" />
+
+        <TextView
+            android:id="@+id/tvRateCountDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            app:layout_goneMarginTop="30dp"
+            android:text="count"
+            android:layout_marginStart="200dp"
+            app:layout_constraintStart_toStartOf="@id/tvAverageRatingDetails"
+            app:layout_constraintTop_toBottomOf="@id/tvReleaseDateDetails" />
+
+        <TextView
+            android:id="@+id/tvAveragePopularityDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            app:layout_goneMarginTop="30dp"
+            android:layout_marginStart="20dp"
+            android:text="popularity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAverageRatingDetails" />
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

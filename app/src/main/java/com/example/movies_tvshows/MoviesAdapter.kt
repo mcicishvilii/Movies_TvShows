@@ -21,6 +21,8 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
         itemClickListener = clickListener
     }
 
+
+
     fun updateList(movies:List<Result1>){
         movieList.clear()
         movieList.addAll(movies)

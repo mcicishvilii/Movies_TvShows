@@ -58,11 +58,8 @@ class TvShowsListFragment : Fragment() {
             withContext(Main){
                 tvShowsAdapter.updateList(response.results1)
             }
-
         }
-
     }
-
     private fun setUpRecyclerView() {
 
 
@@ -71,14 +68,23 @@ class TvShowsListFragment : Fragment() {
         ).apply {
             setOnItemCLickListener { result:Result, i ->
                 parentFragmentManager.beginTransaction().apply {
-                    replace(R.id.flContent,TVshowsDetailsFragment.newInstance(result.name, result.overview,result.poster_path))
+                    replace(R.id.flContent,TVshowsDetailsFragment.newInstance(
+                        result.name,
+                        result.overview,
+                        result.poster_path,
+                        result.backdrop_path,
+                        result.first_air_date,
+                        result.vote_average.toString(),
+                        result.popularity.toString(),
+                        result.vote_count.toString(),
+                    ))
                     addToBackStack(TVshowsDetailsFragment::javaClass.name)
                     commit()
                 }
             }
         }
 
-//        "https://image.tmdb.org/t/p/w500${movies.poster_path}"
+
 
 
         binding.rvMovies.layoutManager =

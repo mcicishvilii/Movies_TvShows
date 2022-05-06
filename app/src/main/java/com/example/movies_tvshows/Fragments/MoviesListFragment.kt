@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movies_tvshows.API.PopularsApi
-import com.example.movies_tvshows.Models.MovieModels.MovieItem
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
@@ -41,6 +39,7 @@ class MoviesListFragment : Fragment() {
 
         setUpRecyclerView()
 
+
         val popularsApi = Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -58,16 +57,26 @@ class MoviesListFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
+
         moviesAdapter = MoviesAdapter(
             mutableListOf()
         ).apply {
+
+
+
             setOnItemCLickListener { movieItem: Result1, i ->
                 parentFragmentManager.beginTransaction().apply {
                     replace(R.id.flContent, MoviesDetailsFragment.newInstance(
                         movieItem.original_title,
                         movieItem.overview,
                         movieItem.poster_path,
-                        movieItem.genre_ids.toString()))
+                        movieItem.backdrop_path,
+                        movieItem.release_date,
+                        movieItem.vote_average.toString(),
+                        movieItem.popularity.toString(),
+                        movieItem.vote_count.toString()
+                    )
+                    )
                     addToBackStack(MoviesDetailsFragment::javaClass.name)
                     commit()
                 }

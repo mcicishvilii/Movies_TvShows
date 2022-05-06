@@ -24,19 +24,28 @@ class TVshowsDetailsFragment :Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tvShowNamefromCompanionObject = requireArguments().getString(KEY_TVSHOW_NAME)
-        val tvShowDescfromCompanionObject = requireArguments().getString(KEY_TVSHOW_DESC)
-        val tvShowPosterfromCompanionObject = requireArguments().getString(KEY_TVSHOW_POST)
-        val movieUrl = requireArguments().getString(KEY_TVSHOW_POST)
+        val movieNamefromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_NAME)
+        val movieDescfromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_DESC)
+        val movieYearfromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_YEAR)
+        val movieRatingfromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_MTVSHOW_RATING)
+        val moviePopularityfromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_POP)
+        val movieRatecountfromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_RATECOUNT)
+
+        val movieUrl = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOWL_POST)
         val realMovieUrl = "https://image.tmdb.org/t/p/w500" + movieUrl
 
-        binding.tvMovieName.text = tvShowNamefromCompanionObject
-        binding.tvMovieDescription.text = tvShowDescfromCompanionObject
+        val movieLargeUrl = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOWS_POST)
+        val realMovieLargeUrl = "https://image.tmdb.org/t/p/w500" + movieLargeUrl
 
+        binding.tvMovieName.text = movieNamefromCompanionObject
+        binding.tvMovieDescription.text = "Overview: \n\n${movieDescfromCompanionObject}"
+        binding.tvReleaseDateDetails.text = "Release Date: \n${movieYearfromCompanionObject}"
+        binding.tvAverageRatingDetails.text = "Average Rating: \n${movieRatingfromCompanionObject}"
+        binding.tvAveragePopularityDetails.text = "Popularity: \n${moviePopularityfromCompanionObject}"
+        binding.tvRateCountDetails.text = "Rate Count: \n${movieRatecountfromCompanionObject}"
 
-//        val movieUrl = requireArguments().getString(KEY_TVSHOW_POST)
-        Glide.with(requireContext()).load(realMovieUrl).into(binding.ivLargePoster)
-
+        Glide.with(requireContext()).load(realMovieLargeUrl).into(binding.ivLargePoster)
+        Glide.with(requireContext()).load(realMovieUrl).into(binding.ivSmallPoster)
 
     }
 
@@ -49,11 +58,36 @@ class TVshowsDetailsFragment :Fragment(){
     companion object{
         const val KEY_TVSHOW_NAME = "KEY_TVSHOW_NAME"
         const val KEY_TVSHOW_DESC = "KEY_TVSHOW_DESC"
-        const val KEY_TVSHOW_POST = "KEY_TVSHOW_POST"
-        fun newInstance(tvShowName: String, tvShowDesc: String,tvShowPoster:String) :TVshowsDetailsFragment{
+        const val KEY_TVSHOWL_POST = "KEY_TVSHOWL_POST"
+        const val KEY_TVSHOWS_POST = "KEY_TVSHOWS_POST"
+        const val KEY_TVSHOW_YEAR = "KEY_TVSHOW_YEAR"
+        const val KEY_MTVSHOW_RATING = "KEY_MTVSHOW_RATING"
+        const val KEY_TVSHOW_POP = "KEY_TVSHOW_POP"
+        const val KEY_TVSHOW_RATECOUNT = "KEY_TVSHOW_RATECOUNT"
+
+        fun newInstance(
+            tvShowName: String,
+            tvShowDesc: String,
+            tvShowImg: String,
+            tvShowImgSMall:String,
+            tvShowReleaseDate:String,
+            tvShowRating: String,
+            tvShowRPopularity:String,
+            tvShowRateCount:String) :TVshowsDetailsFragment{
             return TVshowsDetailsFragment().apply {
-                arguments = bundleOf(KEY_TVSHOW_NAME to tvShowName, KEY_TVSHOW_DESC to tvShowDesc, KEY_TVSHOW_POST to tvShowPoster)
+                arguments = bundleOf(
+                    KEY_TVSHOW_NAME to tvShowName,
+                    KEY_TVSHOW_DESC to tvShowDesc,
+                    KEY_TVSHOWL_POST to tvShowImg,
+                    KEY_TVSHOWS_POST to tvShowImgSMall,
+                    KEY_TVSHOW_YEAR to tvShowReleaseDate,
+                    KEY_MTVSHOW_RATING to tvShowRating,
+                    KEY_TVSHOW_POP to tvShowRPopularity,
+                    KEY_TVSHOW_RATECOUNT to tvShowRateCount
+                )
             }
         }
     }
 }
+
+
