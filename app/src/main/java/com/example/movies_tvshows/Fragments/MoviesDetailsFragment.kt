@@ -27,17 +27,23 @@ class MoviesDetailsFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         val movieNamefromCompanionObject = requireArguments().getString(KEY_MOVIE_NAME)
         val movieDescfromCompanionObject = requireArguments().getString(KEY_MOVIE_DESC)
-        val movieGenrefromCompanionObject = requireArguments().getString(KEY_GENRE_POST)
+
+        val movieLargeUrl = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_POST)
+        val realMovieLargeUrl = "https://image.tmdb.org/t/p/w500" + movieLargeUrl
 
         val movieUrl = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_POST)
         val realMovieUrl = "https://image.tmdb.org/t/p/w500" + movieUrl
 
 
+
+
+
+
         binding.tvMovieName.text = movieNamefromCompanionObject
         binding.tvMovieDescription.text = movieDescfromCompanionObject
-        binding.rvGenres.text = movieGenrefromCompanionObject
 
-        Glide.with(requireContext()).load(realMovieUrl).into(binding.ivLargePoster)
+        Glide.with(requireContext()).load(realMovieLargeUrl).into(binding.ivLargePoster)
+        Glide.with(requireContext()).load(realMovieUrl).into(binding.ivSmallPoster)
 
     }
 
@@ -54,7 +60,11 @@ class MoviesDetailsFragment : Fragment(){
         const val KEY_GENRE_POST = "KEY_GENRE_POST"
         fun newInstance(movieName: String, movieDesc: String, movieImg: String, movieGenre:String): MoviesDetailsFragment{
             return MoviesDetailsFragment().apply {
-                arguments = bundleOf(KEY_MOVIE_NAME to movieName, KEY_MOVIE_DESC to movieDesc, KEY_TVSHOW_POST to movieImg, KEY_GENRE_POST to movieGenre)
+                arguments = bundleOf(
+                    KEY_MOVIE_NAME to movieName,
+                    KEY_MOVIE_DESC to movieDesc,
+                    KEY_TVSHOW_POST to movieImg,
+                    KEY_GENRE_POST to movieGenre)
             }
         }
     }

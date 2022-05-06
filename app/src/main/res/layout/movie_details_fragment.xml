@@ -17,38 +17,39 @@
             android:text="spiderman"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/ivSmallPoster"/>
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/rvGenres"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieName"
+
+        <ImageView
+            android:id="@+id/ivSmallPoster"
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:elevation="1dp"
+            android:layout_marginTop="-80dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/teal_700"
-            android:text="trileri"
-            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@id/tvMovieName"
+            app:layout_constraintTop_toBottomOf="@id/ivLargePoster"
+            android:src="@color/black"
             />
 
         <ImageView
             android:id="@+id/ivLargePoster"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintTop_toBottomOf="@id/rvGenres" />
+            app:layout_constraintDimensionRatio="1.5"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvMovieDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:layout_marginTop="50dp"
             android:text=""
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivLargePoster" />
+            app:layout_constraintTop_toBottomOf="@id/ivSmallPoster" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
