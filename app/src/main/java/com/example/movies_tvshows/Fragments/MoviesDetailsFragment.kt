@@ -25,7 +25,8 @@ class MoviesDetailsFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movieNamefromCompanionObject = requireArguments().getString(KEY_MOVIE_NAME)
+        val movieNamefromCompanionObject = requireArguments().getString(KEY_MOVIE_NAME) /* აქ ბოლო ნაწილი არაა საჭირო ცვლადის სახელში
+        + შეგეძლო ერთი data class გქონოდა Details Model და parcelable გაგეხადა რომელსაც გადააწვდიდი და ამდენი ცვლადის გამოძახება აღარ დაგჭიდებოდა */
         val movieDescfromCompanionObject = requireArguments().getString(KEY_MOVIE_DESC)
         val movieYearfromCompanionObject = requireArguments().getString(KEY_MOVIE_YEAR)
         val movieRatingfromCompanionObject = requireArguments().getString(KEY_MOVIE_RATING)
@@ -67,7 +68,7 @@ class MoviesDetailsFragment : Fragment(){
         const val KEY_MOVIE_RATING = "KEY_MOVIE_RATING"
         const val KEY_MOVIE_POP = "KEY_MOVIE_POP"
         const val KEY_MOVIE_RATECOUNT = "KEY_MOVIE_RATECOUNT"
-
+            //parcelable უნდა გადმოგეწოდებინა აქ detailsModel რაც ზემოთ მიწერია კომენტარში
         fun newInstance(
             movieName: String,
             movieDesc: String,

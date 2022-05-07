@@ -23,6 +23,8 @@ class TVshowsDetailsFragment :Fragment(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // იგივე კომენტარი მაქვს რაც კინოებისს დეტალებზე  + ყველაზე კარგი იქნებოდა მხოლოოდ id გადმოგეცა და მერე ამ ფრაგმენტშიც ვებსერვისით გადმოგეწერა ინფოო
+
         super.onViewCreated(view, savedInstanceState)
         val movieNamefromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_NAME)
         val movieDescfromCompanionObject = requireArguments().getString(TVshowsDetailsFragment.KEY_TVSHOW_DESC)

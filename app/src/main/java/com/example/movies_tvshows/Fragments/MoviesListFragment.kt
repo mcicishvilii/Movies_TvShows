@@ -38,7 +38,9 @@ class MoviesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecyclerView()
-
+//კარგია ძაან უფრო გამარტივება შეიიძლება თუ ერთი ფრაგმენტი გექნებოდა
+//კინოებისთვისააც დაა tv shows ებისთვისაც და recyclerView ს მიეღო
+            // ერთი მოდელი movieModel რომელსაც გააკეთებდი tvShows დანაც და movies მოდელებიდან შემდეგ ღილაკის ქლიქზე გადმოიწერდი მეორე სიას და დააფდეითებდდი recyclerView ს
 
         val popularsApi = Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
