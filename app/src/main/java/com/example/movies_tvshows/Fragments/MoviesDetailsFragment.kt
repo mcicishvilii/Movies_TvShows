@@ -78,6 +78,7 @@ class MoviesDetailsFragment : Fragment(){
             movieRPopularity:String,
             movieRateCount:String
         ): MoviesDetailsFragment{
+
             return MoviesDetailsFragment().apply {
                 arguments = bundleOf(
                     KEY_MOVIE_NAME to movieName,
