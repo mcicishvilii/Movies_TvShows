@@ -21,7 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MoviesListFragment : Fragment() {
     private var _binding: MoviesListFragmentBinding? = null
-
     private val binding get() = _binding!!
     private lateinit var moviesAdapter: MoviesAdapter
 
@@ -64,44 +63,41 @@ class MoviesListFragment : Fragment() {
             mutableListOf()
         ).apply {
 
-
-
-            setOnItemCLickListener { movieItem: Result1, i ->
-                parentFragmentManager.beginTransaction().apply {
-                    replace(R.id.flContent, MoviesDetailsFragment.newInstance(
-                        movieItem.original_title,
-                        movieItem.overview,
-                        movieItem.poster_path,
-                        movieItem.backdrop_path,
-                        movieItem.release_date,
-                        movieItem.vote_average.toString(),
-                        movieItem.popularity.toString(),
-                        movieItem.vote_count.toString()
-                    )
-                    )
-                    addToBackStack(MoviesDetailsFragment::javaClass.name)
-                    commit()
-                }
-            }
+//            setOnItemCLickListener { movieItem: Result1, i ->
+//                parentFragmentManager.beginTransaction().apply {
+//                    replace(R.id.flContent, MoviesDetailsFragment.newInstance(
+//                        movieItem.original_title,
+//                        movieItem.overview,
+//                        movieItem.poster_path,
+//                        movieItem.backdrop_path,
+//                        movieItem.release_date,
+//                        movieItem.vote_average.toString(),
+//                        movieItem.popularity.toString(),
+//                        movieItem.vote_count.toString()
+//                    )
+//                    )
+//                    addToBackStack(MoviesDetailsFragment::javaClass.name)
+//                    commit()
+//                }
+//            }
 
         }
         binding.rvMovies.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvMovies.adapter = moviesAdapter
 
-            binding.bntTVShows.setOnClickListener {
-            parentFragmentManager.beginTransaction().apply {
-                replace(R.id.flContent, TvShowsListFragment())
-                addToBackStack(TvShowsListFragment::javaClass.name)
-                commit()
-            }
-        }
+//            binding.bntTVShows.setOnClickListener {
+//            parentFragmentManager.beginTransaction().apply {
+//                replace(R.id.flContent, TvShowsListFragment())
+//                addToBackStack(TvShowsListFragment::javaClass.name)
+//                commit()
+//            }
+//        }
     }
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
     }
-
-    }
+}
 
 

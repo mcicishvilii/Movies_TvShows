@@ -63,26 +63,26 @@ class TvShowsListFragment : Fragment() {
     private fun setUpRecyclerView() {
 
 
-        tvShowsAdapter = TvShowsAdapter(
-            mutableListOf()
-        ).apply {
-            setOnItemCLickListener { result:Result, i ->
-                parentFragmentManager.beginTransaction().apply {
-                    replace(R.id.flContent,TVshowsDetailsFragment.newInstance(
-                        result.name,
-                        result.overview,
-                        result.poster_path,
-                        result.backdrop_path,
-                        result.first_air_date,
-                        result.vote_average.toString(),
-                        result.popularity.toString(),
-                        result.vote_count.toString(),
-                    ))
-                    addToBackStack(TVshowsDetailsFragment::javaClass.name)
-                    commit()
-                }
-            }
-        }
+//        tvShowsAdapter = TvShowsAdapter(
+//            mutableListOf()
+//        ).apply {
+//            setOnItemCLickListener { result:Result, i ->
+//                parentFragmentManager.beginTransaction().apply {
+//                    replace(R.id.flContent,TVshowsDetailsFragment.newInstance(
+//                        result.name,
+//                        result.overview,
+//                        result.poster_path,
+//                        result.backdrop_path,
+//                        result.first_air_date,
+//                        result.vote_average.toString(),
+//                        result.popularity.toString(),
+//                        result.vote_count.toString(),
+//                    ))
+//                    addToBackStack(TVshowsDetailsFragment::javaClass.name)
+//                    commit()
+//                }
+//            }
+//        }
 
 
 

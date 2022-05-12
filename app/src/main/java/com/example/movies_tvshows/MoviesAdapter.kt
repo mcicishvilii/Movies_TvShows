@@ -17,17 +17,12 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
         return MoviesViewHolder(binding)
     }
 
-    fun setOnItemCLickListener(clickListener: (Result1, Int) -> Unit) {
-        itemClickListener = clickListener
-    }
-
-
-
     fun updateList(movies:List<Result1>){
         movieList.clear()
         movieList.addAll(movies)
         notifyDataSetChanged()
     }
+
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
 
