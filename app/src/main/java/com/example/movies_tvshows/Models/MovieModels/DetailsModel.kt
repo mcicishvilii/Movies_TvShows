@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Result1(
+data class DetailsModel(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
@@ -19,4 +19,5 @@ data class Result1(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
+
 ):Parcelable

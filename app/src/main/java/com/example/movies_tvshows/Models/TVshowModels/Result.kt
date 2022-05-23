@@ -1,7 +1,10 @@
 package com.example.movies_tvshows.Models.TVshowModels
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 data class Result(
     val backdrop_path: String,
     val first_air_date: String,
@@ -16,5 +19,5 @@ data class Result(
     val poster_path: String,
     val vote_average: Double,
     val vote_count: Int,
-)
+):Parcelable
 

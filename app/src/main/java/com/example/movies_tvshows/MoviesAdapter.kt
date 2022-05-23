@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movies_tvshows.Models.MovieModels.Result1
+import com.example.movies_tvshows.Models.TVshowModels.Result
 import com.example.movies_tvshows.databinding.LayoutMovieItemBinding
 
 
@@ -23,6 +24,9 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
         notifyDataSetChanged()
     }
 
+    fun setOnItemCLickListener(clickListener: (Result1, Int) -> Unit) {
+        itemClickListener = clickListener
+    }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
 
@@ -32,7 +36,6 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
         holder.binding.ivImagePoster.setImageURI("https://image.tmdb.org/t/p/w500${movie.poster_path}")
         holder.binding.tvReleaseDate.text = "release date: \n${movie.release_date.toString()}"
         holder.binding.tvAverageRating.text = "total votes: \n${movie.vote_count.toString()}"
-
         holder.binding.tvMovieName.setOnClickListener {
             itemClickListener.invoke(movie,position)
         }

@@ -8,7 +8,7 @@ import com.example.movies_tvshows.Models.TVshowModels.Result
 import com.example.movies_tvshows.databinding.LayoutMovieTvShowItemBinding
 
 
-class TvShowsAdapter(val TVshowsList: MutableList<Result>) : RecyclerView.Adapter<TvShowsViewholder>() {
+class TvShowsAdapter(val TVshowsList: MutableList<Result>) : RecyclerView.Adapter<TvShowsAdapter.TvShowsViewholder>() {
     private lateinit var itemClickListener: (Result, Int) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowsViewholder {
@@ -46,9 +46,12 @@ class TvShowsAdapter(val TVshowsList: MutableList<Result>) : RecyclerView.Adapte
     override fun getItemCount(): Int {
         return TVshowsList.size
     }
+
+    inner class TvShowsViewholder(val binding: LayoutMovieTvShowItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
 
-class TvShowsViewholder(val binding: LayoutMovieTvShowItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-
-}
+//class TvShowsViewholder(val binding: LayoutMovieTvShowItemBinding) :
+//    RecyclerView.ViewHolder(binding.root) {
+//
+//}
