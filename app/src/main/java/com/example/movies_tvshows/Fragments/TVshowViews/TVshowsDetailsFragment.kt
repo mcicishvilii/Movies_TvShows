@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.Models.TVshowModels.Result
 import com.example.movies_tvshows.databinding.TvShowsDetailsFragmentBinding
 

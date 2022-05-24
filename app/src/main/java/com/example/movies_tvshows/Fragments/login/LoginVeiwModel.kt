@@ -35,30 +35,21 @@ class LoginVeiwModel(application: Application): AndroidViewModel(application) {
 
     fun logIn(user:String, password:String) {
         viewModelScope.launch {
-//            try{
-                gacematokeni = tokenRepo.logIn(
-                    "843c612d1207fdec63f0e6a5fd426d68",
-                    loginRequestModel = LoginRequestModel(user,password,requestTokeni)).request_token
-
-                tokenliveData.postValue(gacematokeni)
-//            }catch(exception: HttpException){
-//                Log.d("misho",exception.stackTraceToString())
-//            }
+            gacematokeni = tokenRepo.logIn(
+                "843c612d1207fdec63f0e6a5fd426d68",
+                loginRequestModel = LoginRequestModel(user,password,requestTokeni)).request_token
+            tokenliveData.postValue(gacematokeni)
         }
     }
 
 
     fun getSessionId(requestToken:String){
         viewModelScope.launch {
-//            try{
-                gacematokeni
-                val sessionID = tokenRepo.getSessionId("843c612d1207fdec63f0e6a5fd426d68", getSessionIDRequestModel =
-                GetSessionIDRequestModel(requestToken)
-                )
-                tokenRepo.saveAccessToken(sessionID.session_id)
-//            }catch(exception: HttpException){
-//                Log.d("misho",exception.stackTraceToString())
-//            }
+            gacematokeni
+            val sessionID = tokenRepo.getSessionId("843c612d1207fdec63f0e6a5fd426d68", getSessionIDRequestModel =
+            GetSessionIDRequestModel(requestToken)
+            )
+            tokenRepo.saveAccessToken(sessionID.session_id)
         }
     }
 }

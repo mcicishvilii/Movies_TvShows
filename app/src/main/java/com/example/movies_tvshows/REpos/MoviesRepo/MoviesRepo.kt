@@ -7,6 +7,15 @@ class MoviesRepo {
     suspend fun getPopularMovies(apiKey: String):PopularResponse{
         return RetrofitHelper.PopularuliMovieApi.getPopularMovies(apiKey)
     }
+    suspend fun getTopRated(apiKey: String):PopularResponse{
+        return RetrofitHelper.PopularuliMovieApi.getTopRated(apiKey)
+    }
+    suspend fun searchForMovie(apiKey: String, query:String):PopularResponse{
+        return RetrofitHelper.PopularuliMovieApi.searchMovie(apiKey,query)
+    }
+
+
+
 
     companion object {
         //this singleton

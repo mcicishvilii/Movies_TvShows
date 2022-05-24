@@ -17,6 +17,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_findYourMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Your Movies"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_searchbar"
+        android:layout_width="250dp"
+        android:hint="Search Here ..."
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_findYourMovie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/et_searchbar"
+        app:layout_constraintTop_toBottomOf="@id/tv_findYourMovie"
+        app:layout_constraintBottom_toBottomOf="@id/et_searchbar"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+    <TextView
         android:id="@+id/TV_categories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,24 +55,24 @@
         android:text="Categories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/et_searchbar" />
 
     <Button
-        android:id="@+id/bnt_movies"
+        android:id="@+id/bnt_popular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="movies"
-        app:layout_constraintEnd_toStartOf="@id/bnt_TV_Shows"
+        android:text="Popular"
+        app:layout_constraintEnd_toStartOf="@id/bnt_topRated"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/TV_categories" />
 
     <Button
-        android:id="@+id/bnt_TV_Shows"
+        android:id="@+id/bnt_topRated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TV shows"
+        android:text="Top Rated"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/bnt_movies"
+        app:layout_constraintStart_toEndOf="@id/bnt_popular"
         app:layout_constraintTop_toBottomOf="@id/TV_categories" />
 
 
@@ -50,6 +81,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/bnt_TV_Shows" />
+        app:layout_constraintTop_toBottomOf="@id/bnt_topRated" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

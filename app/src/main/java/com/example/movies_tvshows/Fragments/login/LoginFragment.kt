@@ -24,8 +24,6 @@ import okhttp3.Response
 import retrofit2.HttpException
 
 
-const val SIGN_IN_RESULT_CODE = 200
-
 class LoginFragment:Fragment() {
 
     private var _binding: LoginLayoutBinding? = null
@@ -52,17 +50,21 @@ class LoginFragment:Fragment() {
             val useri = binding.etUsername.text.toString()
             val paroli = binding.etPassword.text.toString()
 
-//            Toast.makeText(requireContext(),useri,Toast.LENGTH_SHORT).show()
             viewModel.logIn(useri,paroli)
 
             parentFragmentManager.beginTransaction().apply {
-                replace(R.id.flContent, TvShowsListFragment())
-                addToBackStack(TvShowsListFragment::javaClass.name)
+                replace(R.id.flContent, MoviesListFragment())
+                addToBackStack(MoviesListFragment::javaClass.name)
                 commit()
             }
+        }
 
-
-
+        binding.btnSkipButton.setOnClickListener {
+            parentFragmentManager.beginTransaction().apply {
+                replace(R.id.flContent, MoviesListFragment())
+                addToBackStack(MoviesListFragment::javaClass.name)
+                commit()
+            }
         }
 
 
