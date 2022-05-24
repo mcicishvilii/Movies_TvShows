@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.Models.TVshowModels.Result
+import com.example.movies_tvshows.Room.UserEntity
 import com.example.movies_tvshows.databinding.LayoutMovieItemBinding
 
 
@@ -23,6 +24,7 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
         movieList.addAll(movies)
         notifyDataSetChanged()
     }
+
 
     fun setOnItemCLickListener(clickListener: (Result1, Int) -> Unit) {
         itemClickListener = clickListener

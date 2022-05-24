@@ -1,19 +1,21 @@
 package com.example.movies_tvshows.Fragments.MovieViews
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.REpos.MoviesRepo.MoviesRepo
+import com.example.movies_tvshows.REpos.MoviesRepo.UsersRepo
+import com.example.movies_tvshows.Room.UserEntity
 import kotlinx.coroutines.launch
 
-class MoviesViewModel: ViewModel() {
+class MoviesViewModel(application: Application): AndroidViewModel(application) {
     private val moviesLiveData = MutableLiveData<List<Result1>>()
     private val moviesLiveData1 = MutableLiveData<List<Result1>>()
     private val moviesLiveData2 = MutableLiveData<List<Result1>>()
     private val moviesRepo = MoviesRepo.getInstance()
+    private val usersRepo = UsersRepo.getInstance(application)
+    private val userLiveData = MutableLiveData<List<UserEntity>>()
 
 
 
@@ -25,6 +27,13 @@ class MoviesViewModel: ViewModel() {
         viewModelScope.launch { // ეს viewModelScope არის ავტომატურად ბექგგრაუნდ სრედი
             moviesLiveData1.postValue(moviesRepo.getTopRated("843c612d1207fdec63f0e6a5fd426d68").results)
         }
+    }
+
+    fun getUser(): LiveData<List<UserEntity>>{
+        viewModelScope.launch {
+            usersRepo.getAllUsers()
+        }
+        return userLiveData
     }
 
 

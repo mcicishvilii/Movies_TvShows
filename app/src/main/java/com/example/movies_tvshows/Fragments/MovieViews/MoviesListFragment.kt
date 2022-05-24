@@ -13,6 +13,7 @@ import com.example.movies_tvshows.Fragments.TVshowViews.TVshowsDetailsFragment
 import com.example.movies_tvshows.Fragments.TVshowViews.TVshowsViewModel
 import com.example.movies_tvshows.Fragments.TVshowViews.TvShowsListFragment
 import com.example.movies_tvshows.Fragments.login.LoginFragment
+import com.example.movies_tvshows.Fragments.login.LoginVeiwModel
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
@@ -31,6 +32,7 @@ class MoviesListFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var moviesAdapter: MoviesAdapter
     private val viewModel by viewModels<MoviesViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,14 +53,11 @@ class MoviesListFragment : Fragment() {
             moviesAdapter.updateList(it)
         }
 
-
     }
 
     private fun setUpRecyclerView() {
 
-        moviesAdapter = MoviesAdapter(
-            mutableListOf()
-        ).apply {
+        moviesAdapter = MoviesAdapter(mutableListOf()).apply {
             setOnItemCLickListener { result: Result1, i ->
                 parentFragmentManager.beginTransaction().apply {
                     replace(R.id.flContent, MoviesDetailsFragment.newInstance(
@@ -88,6 +87,7 @@ class MoviesListFragment : Fragment() {
                 moviesAdapter.updateList(it)
             }
         }
+
 
 
         binding.ivSearch.setOnClickListener {

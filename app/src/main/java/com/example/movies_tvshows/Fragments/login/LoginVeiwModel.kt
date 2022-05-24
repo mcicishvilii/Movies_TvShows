@@ -9,6 +9,8 @@ import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.Models.TVshowModels.Result
 import com.example.movies_tvshows.REpos.MoviesRepo.TokenRepo
+import com.example.movies_tvshows.REpos.MoviesRepo.UsersRepo
+import com.example.movies_tvshows.Room.UserEntity
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import retrofit2.Response
@@ -16,7 +18,7 @@ import retrofit2.Response
 class LoginVeiwModel(application: Application): AndroidViewModel(application) {
 
     private var tokenliveData = MutableLiveData<String>()
-
+    private val usersRepo = UsersRepo.getInstance(application)
     private val tokenRepo = TokenRepo.getInstance(application)
     private var requestTokeni:String = ""
     private var gacematokeni:String = "misho"
@@ -25,6 +27,19 @@ class LoginVeiwModel(application: Application): AndroidViewModel(application) {
     init {
         viewModelScope.launch {
             requestTokeni = tokenRepo.miigeTokeni("843c612d1207fdec63f0e6a5fd426d68").request_token
+        }
+    }
+
+
+    fun saveUser(userEntity: UserEntity){
+        viewModelScope.launch {
+            usersRepo.insertUser(userEntity)
+        }
+    }
+
+    fun getUser(){
+        viewModelScope.launch {
+            usersRepo.getAllUsers()
         }
     }
 

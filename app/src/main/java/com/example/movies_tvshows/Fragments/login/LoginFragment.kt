@@ -17,6 +17,8 @@ import com.example.movies_tvshows.Fragments.TVshowViews.TvShowsListFragment
 import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
+import com.example.movies_tvshows.Room.UserDao
+import com.example.movies_tvshows.Room.UserEntity
 import com.example.movies_tvshows.databinding.LoginLayoutBinding
 import kotlinx.coroutines.handleCoroutineException
 import kotlinx.parcelize.Parcelize
@@ -42,14 +44,23 @@ class LoginFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getTokenLiveData().observe(viewLifecycleOwner,){
+        val sessionID = viewModel.getTokenLiveData().observe(viewLifecycleOwner,){
             viewModel.getSessionId(it)
         }
 
+
         binding.btnLogin.setOnClickListener {
+//            val userForDB = UserEntity(
+//                0,
+//                sessionID.toString()
+//            )
+
             val useri = binding.etUsername.text.toString()
             val paroli = binding.etPassword.text.toString()
 
+
+
+//            viewModel.saveUser(userForDB)
             viewModel.logIn(useri,paroli)
 
             parentFragmentManager.beginTransaction().apply {
