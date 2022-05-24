@@ -5,8 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 
 data class LoginRequestModel(
-    val username:String,
+    val username: String,
     val password:String,
     val request_token:String
-
 )

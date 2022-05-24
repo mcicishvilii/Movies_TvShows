@@ -16,16 +16,19 @@ import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
 import com.example.movies_tvshows.databinding.LoginLayoutBinding
+import kotlinx.coroutines.handleCoroutineException
 import kotlinx.parcelize.Parcelize
+import okhttp3.Response
+import retrofit2.HttpException
 
 
-
+const val SIGN_IN_RESULT_CODE = 200
 
 class LoginFragment:Fragment() {
 
     private var _binding: LoginLayoutBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: LoginVeiwModel
+    private val viewModel by viewModels<LoginVeiwModel>()
 
 
     override fun onCreateView(
@@ -39,37 +42,28 @@ class LoginFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        val useri = "hekkah"
-        val paroli = "Kubriki19"
-        val request_tokeni = viewModel.getToken().toString()
-
-        val loginDetails = LoginRequestModel(useri,paroli, request_tokeni)
-
-        viewModel.pushLogin(loginDetails)
-        viewModel.myResponse.observe(viewLifecycleOwner, { response ->
-            Toast.makeText(requireContext(),request_tokeni,Toast.LENGTH_SHORT).show()
-        })
-
-
+        viewModel.getTokenLiveData().observe(viewLifecycleOwner,){
+            viewModel.getSessionId(it)
+        }
 
         binding.btnLogin.setOnClickListener {
+            val useri = binding.etUsername.text.toString()
+            val paroli = binding.etPassword.text.toString()
+
+//            Toast.makeText(requireContext(),useri,Toast.LENGTH_SHORT).show()
+            viewModel.logIn(useri,paroli)
+
 
         }
 
-        binding.btnSkipButton.setOnClickListener {
-            parentFragmentManager.beginTransaction().apply {
-                replace(R.id.flContent, MoviesListFragment())
-                addToBackStack(MoviesListFragment::javaClass.name)
-                commit()
-            }
-        }
+
     }
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
     }
+
+
 }
 

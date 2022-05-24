@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 
 data class TokenResponse(
-    @SerializedName("requestToken")
-    val requestToken:List<String>
+    val expires_at: String,
+    val request_token: String,
+    val success: Boolean
 )

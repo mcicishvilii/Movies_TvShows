@@ -1,37 +1,64 @@
 package com.example.movies_tvshows.Fragments.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.movies_tvshows.Fragments.TVshowViews.TVshowsDetailsFragment
+import com.example.movies_tvshows.Models.LoginScreenData.GetSessionIDRequestModel
 import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.Models.TVshowModels.Result
 import com.example.movies_tvshows.REpos.MoviesRepo.TokenRepo
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import retrofit2.Response
 
-class LoginVeiwModel(private val repo: TokenRepo): ViewModel() {
+class LoginVeiwModel(application: Application): AndroidViewModel(application) {
 
-    var myResponse: MutableLiveData<Response<LoginRequestModel>> = MutableLiveData()
+    private var tokenliveData = MutableLiveData<String>()
 
-    fun getToken() {
+    private val tokenRepo = TokenRepo.getInstance(application)
+    private var requestTokeni:String = ""
+    private var gacematokeni:String = "misho"
+
+
+    init {
         viewModelScope.launch {
-            val response = repo.miigeTokeni("843c612d1207fdec63f0e6a5fd426d68")
-            myResponse.value = response
+            requestTokeni = tokenRepo.miigeTokeni("843c612d1207fdec63f0e6a5fd426d68").request_token
         }
-
     }
 
 
-    fun pushLogin(loginRequestModel: LoginRequestModel) {
-        viewModelScope.launch {
-            val response = repo.gaeciLoginDetalebi("843c612d1207fdec63f0e6a5fd426d68",loginRequestModel)
-            myResponse.value = response
-        }
+    fun getTokenLiveData(): LiveData<String> {
+        return tokenliveData
+    }
 
+    fun logIn(user:String, password:String) {
+        viewModelScope.launch {
+//            try{
+                gacematokeni = tokenRepo.logIn(
+                    "843c612d1207fdec63f0e6a5fd426d68",
+                    loginRequestModel = LoginRequestModel(user,password,requestTokeni)).request_token
+
+                tokenliveData.postValue(gacematokeni)
+//            }catch(exception: HttpException){
+//                Log.d("misho",exception.stackTraceToString())
+//            }
+        }
     }
 
 
+    fun getSessionId(requestToken:String){
+        viewModelScope.launch {
+//            try{
+                gacematokeni
+                val sessionID = tokenRepo.getSessionId("843c612d1207fdec63f0e6a5fd426d68", getSessionIDRequestModel =
+                GetSessionIDRequestModel(requestToken)
+                )
+                tokenRepo.saveAccessToken(sessionID.session_id)
+//            }catch(exception: HttpException){
+//                Log.d("misho",exception.stackTraceToString())
+//            }
+        }
+    }
 }

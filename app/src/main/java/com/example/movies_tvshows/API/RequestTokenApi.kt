@@ -11,14 +11,7 @@ import retrofit2.http.Query
 interface RequestTokenApi{
     @GET("authentication/token/new")
 
-    suspend fun getRequestToken(@Query("api_key") apiKey:String): Response<LoginRequestModel>
-
-    @POST("authentication/token/validate_with_login")
-
-    suspend fun logInWithUserName(
+    suspend fun getRequestToken(
         @Query("api_key")
-        apiKey: String,
-        @Body loginRequestModel: LoginRequestModel
-    )
-            :Response<LoginRequestModel>
+        apiKey:String): TokenResponse
 }
