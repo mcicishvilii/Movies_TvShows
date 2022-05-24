@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import com.example.movies_tvshows.API.GetSessionIDResponse
 import com.example.movies_tvshows.Fragments.MovieViews.MoviesListFragment
+import com.example.movies_tvshows.Fragments.TVshowViews.TvShowsListFragment
 import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
@@ -52,6 +54,13 @@ class LoginFragment:Fragment() {
 
 //            Toast.makeText(requireContext(),useri,Toast.LENGTH_SHORT).show()
             viewModel.logIn(useri,paroli)
+
+            parentFragmentManager.beginTransaction().apply {
+                replace(R.id.flContent, TvShowsListFragment())
+                addToBackStack(TvShowsListFragment::javaClass.name)
+                commit()
+            }
+
 
 
         }
