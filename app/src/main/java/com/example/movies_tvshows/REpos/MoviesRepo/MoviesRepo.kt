@@ -1,6 +1,7 @@
 package com.example.movies_tvshows.REpos.MoviesRepo
 
 import com.example.movies_tvshows.Models.MovieModels.PopularResponse
+import com.example.movies_tvshows.Models.MovieModels.UserIdResponse
 import com.example.movies_tvshows.helpers.RetrofitHelper
 
 class MoviesRepo {
@@ -13,7 +14,6 @@ class MoviesRepo {
     suspend fun searchForMovie(apiKey: String, query:String):PopularResponse{
         return RetrofitHelper.PopularuliMovieApi.searchMovie(apiKey,query)
     }
-
 
 
 

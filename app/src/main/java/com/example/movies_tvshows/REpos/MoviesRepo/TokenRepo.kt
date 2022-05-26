@@ -7,6 +7,7 @@ import com.example.movies_tvshows.API.TokenResponse
 import com.example.movies_tvshows.Fragments.login.LoginFragment
 import com.example.movies_tvshows.Models.LoginScreenData.GetSessionIDRequestModel
 import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
+import com.example.movies_tvshows.Models.MovieModels.UserIdResponse
 import com.example.movies_tvshows.helpers.RetrofitHelper
 import retrofit2.Response
 
@@ -24,7 +25,7 @@ class TokenRepo(val application: Application) {
         return RetrofitHelper.LoginisApi.getSessionId(apiKey,getSessionIDRequestModel)
     }
 
-    fun saveAccessToken(sessionID:String){
+    fun saveAccessToken(sessionID:String){ // ეს არის შეარდ პრეფერენსი რაც დავალებაში წერია
         val sharedPreference = application.getSharedPreferences("TOKENPREFERENCE", Application.MODE_PRIVATE)
         sharedPreference.edit().putString("TOKEN_KEY",sessionID).apply()
     }
@@ -33,6 +34,11 @@ class TokenRepo(val application: Application) {
         val sharedPreference = application.getSharedPreferences("TOKENPREFERENCE", Application.MODE_PRIVATE)
         return sharedPreference.getString("TOKEN_KEY","no session id")
     }
+
+    suspend fun getUserIdFromSessionId(apiKey: String, sessionIdHere:String): UserIdResponse {
+        return RetrofitHelper.PopularuliMovieApi.getUserId(apiKey,sessionIdHere)
+    }
+
 
 
     companion object {

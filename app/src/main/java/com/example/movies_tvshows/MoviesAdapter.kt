@@ -26,6 +26,7 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
     }
 
 
+
     fun setOnItemCLickListener(clickListener: (Result1, Int) -> Unit) {
         itemClickListener = clickListener
     }

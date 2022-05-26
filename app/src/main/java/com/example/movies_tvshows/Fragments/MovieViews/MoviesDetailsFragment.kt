@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.movies_tvshows.Models.MovieModels.Result1
+import com.example.movies_tvshows.R
 import com.example.movies_tvshows.databinding.MovieDetailsFragmentBinding
 
 
@@ -27,6 +28,12 @@ class MoviesDetailsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val resultItem = requireArguments().getParcelable<Result1>(MOVIES)
+
+
+        binding.ivWatchlist.setOnClickListener {
+            binding.ivWatchlist.setImageResource(R.drawable.ic_vectorbookmark)
+        }
+
 
 
         val movieURL = resultItem?.poster_path

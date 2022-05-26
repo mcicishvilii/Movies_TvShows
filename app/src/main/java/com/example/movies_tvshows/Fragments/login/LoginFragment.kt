@@ -44,23 +44,16 @@ class LoginFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val sessionID = viewModel.getTokenLiveData().observe(viewLifecycleOwner,){
-            viewModel.getSessionId(it)
-        }
+
+
 
 
         binding.btnLogin.setOnClickListener {
-//            val userForDB = UserEntity(
-//                0,
-//                sessionID.toString()
-//            )
 
             val useri = binding.etUsername.text.toString()
             val paroli = binding.etPassword.text.toString()
 
 
-
-//            viewModel.saveUser(userForDB)
             viewModel.logIn(useri,paroli)
 
             parentFragmentManager.beginTransaction().apply {
@@ -70,6 +63,7 @@ class LoginFragment:Fragment() {
             }
         }
 
+        //ეს არის სქიპბათონზე დაჭერის დროს რო უბრალოდ გადადის შემდეგ ფრაგმენტზე და ამიტო ჩაკეცილია
         binding.btnSkipButton.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.flContent, MoviesListFragment())

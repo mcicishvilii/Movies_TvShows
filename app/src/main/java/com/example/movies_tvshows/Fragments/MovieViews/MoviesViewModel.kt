@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.movies_tvshows.Models.LoginScreenData.LoginRequestModel
 import com.example.movies_tvshows.Models.MovieModels.Result1
+import com.example.movies_tvshows.Models.MovieModels.UserIdResponse
 import com.example.movies_tvshows.REpos.MoviesRepo.MoviesRepo
 import com.example.movies_tvshows.REpos.MoviesRepo.UsersRepo
 import com.example.movies_tvshows.Room.UserEntity
@@ -13,9 +14,11 @@ class MoviesViewModel(application: Application): AndroidViewModel(application) {
     private val moviesLiveData = MutableLiveData<List<Result1>>()
     private val moviesLiveData1 = MutableLiveData<List<Result1>>()
     private val moviesLiveData2 = MutableLiveData<List<Result1>>()
+
     private val moviesRepo = MoviesRepo.getInstance()
     private val usersRepo = UsersRepo.getInstance(application)
-    private val userLiveData = MutableLiveData<List<UserEntity>>()
+
+
 
 
 
@@ -29,14 +32,15 @@ class MoviesViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun getUser(): LiveData<List<UserEntity>>{
+
+
+
+    fun searchForMovie(query:String): LiveData<List<Result1>> {
         viewModelScope.launch {
-            usersRepo.getAllUsers()
+            moviesLiveData2.postValue(moviesRepo.searchForMovie("843c612d1207fdec63f0e6a5fd426d68",query).results)
         }
-        return userLiveData
+        return moviesLiveData2
     }
-
-
 
     fun getPopularMoviesLiveData(): LiveData<List<Result1>> {
         return moviesLiveData
@@ -44,13 +48,6 @@ class MoviesViewModel(application: Application): AndroidViewModel(application) {
 
     fun getTopRatedMoviesLiveData1(): LiveData<List<Result1>> {
         return moviesLiveData1
-    }
-
-    fun searchForMovie(query:String): LiveData<List<Result1>> {
-        viewModelScope.launch {
-            moviesLiveData2.postValue(moviesRepo.searchForMovie("843c612d1207fdec63f0e6a5fd426d68",query).results)
-        }
-        return moviesLiveData2
     }
 
 

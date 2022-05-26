@@ -28,6 +28,7 @@
     <EditText
         android:id="@+id/et_searchbar"
         android:layout_width="250dp"
+        android:layout_marginEnd="120dp"
         android:hint="Search Here ..."
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_findYourMovie"
@@ -36,22 +37,13 @@
 
     <ImageView
         android:id="@+id/iv_search"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@color/black"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_vector"
         app:layout_constraintStart_toEndOf="@+id/et_searchbar"
         app:layout_constraintTop_toBottomOf="@id/tv_findYourMovie"
         app:layout_constraintBottom_toBottomOf="@id/et_searchbar"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-    <Button
-        android:id="@+id/checker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bnt_topRated" />
-
 
 
     <TextView
@@ -87,6 +79,6 @@
         android:id="@+id/rvMovies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/checker" />
+        app:layout_constraintTop_toBottomOf="@+id/bnt_topRated" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

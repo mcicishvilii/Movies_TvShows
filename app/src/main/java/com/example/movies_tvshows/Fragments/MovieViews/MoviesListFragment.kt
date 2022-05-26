@@ -17,6 +17,7 @@ import com.example.movies_tvshows.Fragments.login.LoginVeiwModel
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
+import com.example.movies_tvshows.Room.UserEntity
 import com.example.movies_tvshows.databinding.MoviesListFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -48,10 +49,13 @@ class MoviesListFragment : Fragment() {
 
         setUpRecyclerView()
 
+
         viewModel.getPopularMoviesLiveData()
         viewModel.getPopularMoviesLiveData().observe(viewLifecycleOwner){
             moviesAdapter.updateList(it)
         }
+
+
 
     }
 
@@ -89,7 +93,6 @@ class MoviesListFragment : Fragment() {
         }
 
 
-
         binding.ivSearch.setOnClickListener {
             var searchItem = binding.etSearchbar.text.toString()
             viewModel.searchForMovie(searchItem)
@@ -121,6 +124,8 @@ class MoviesListFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
+
+
 }
 
 
