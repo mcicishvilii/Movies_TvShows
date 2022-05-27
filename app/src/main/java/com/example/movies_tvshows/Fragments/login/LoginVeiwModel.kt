@@ -20,20 +20,19 @@ import retrofit2.Response
 class LoginVeiwModel(application: Application): AndroidViewModel(application) {
 
     private var tokenliveData = MutableLiveData<String>()
-    private val usersRepo = UsersRepo.getInstance(application)
+
     private val tokenRepo = TokenRepo.getInstance(application)
-    private var requestTokeni:String = ""
+    var requestTokeni:String = ""
     private var gacematokeni:String = "misho"
-    private val userIdLiveData = MutableLiveData<List<UserIdResponse>>()
-    private var misho = ""
+
+
+
 
 
     init {
         viewModelScope.launch {
             requestTokeni = tokenRepo.miigeTokeni("843c612d1207fdec63f0e6a5fd426d68").request_token
         }
-
-
     }
 
 
@@ -51,22 +50,40 @@ class LoginVeiwModel(application: Application): AndroidViewModel(application) {
     }
 
 
-    fun getSessionId(requestToken:String){ // ეს პოსტავს logIn ფუნქციის გაგზავნით მიღებულ ტოკენს და უკან აბრუნებს სესსიონ აიდს.
+
+
+    fun getSessionId(requestToken:String) { // ეს პოსტავს logIn ფუნქციის გაგზავნით მიღებულ ტოკენს და უკან აბრუნებს სესსიონ აიდს.
         viewModelScope.launch {
             gacematokeni
-            val sessionID = tokenRepo.getSessionId("843c612d1207fdec63f0e6a5fd426d68", getSessionIDRequestModel =
-            GetSessionIDRequestModel(requestToken)
+            val sessionID = tokenRepo.getSessionId(
+                "843c612d1207fdec63f0e6a5fd426d68", getSessionIDRequestModel =
+                GetSessionIDRequestModel(requestToken)
             )
             tokenRepo.saveAccessToken(sessionID.session_id)
-            misho = sessionID.toString()
         }
-
     }
 
-    fun getUserId(query:String): LiveData<List<UserIdResponse>> {
+    fun addToWatchlist() {
         viewModelScope.launch {
-            userIdLiveData.postValue(tokenRepo.getUserIdFromSessionId("843c612d1207fdec63f0e6a5fd426d68",misho).id)
+
         }
-        return userIdLiveData
     }
+
+
+
+//    fun getUserId(query:String) {
+//        viewModelScope.launch {
+//            userIdLiveData.postValue(tokenRepo.getUserIdFromSessionId("843c612d1207fdec63f0e6a5fd426d68","1212003").id)
+//        }
+//        return userIdLiveData
+//    }
+
+
+
+
+
+
+
+
 }
+

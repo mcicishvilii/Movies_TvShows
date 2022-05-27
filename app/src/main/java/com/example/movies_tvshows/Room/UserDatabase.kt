@@ -22,7 +22,7 @@ abstract class UserDatabase : RoomDatabase(){
                 return tempInstance
             }
             synchronized(this){
-                val newInstance = Room.databaseBuilder(context, UserDatabase::class.java, "users_database").allowMainThreadQueries().build()
+                val newInstance = Room.databaseBuilder(context, UserDatabase::class.java, "users_database").allowMainThreadQueries().fallbackToDestructiveMigration().build()
                 INSTANCE = newInstance
                 return newInstance
             }

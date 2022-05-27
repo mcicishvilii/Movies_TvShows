@@ -10,7 +10,7 @@ import com.example.movies_tvshows.Room.UserEntity
 import com.example.movies_tvshows.databinding.LayoutMovieItemBinding
 
 
-class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<MoviesViewHolder>() {
+class MoviesAdapter(val movieList: MutableList<Result1>, /*val users:MutableList<UserEntity>*/) : RecyclerView.Adapter<MoviesViewHolder>() {
     private lateinit var itemClickListener: (Result1, Int) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -24,6 +24,12 @@ class MoviesAdapter(val movieList: MutableList<Result1>) : RecyclerView.Adapter<
         movieList.addAll(movies)
         notifyDataSetChanged()
     }
+
+//    fun updateAll(list: List<UserEntity>){
+//        users.clear()
+//        users.addAll(list)
+//        notifyDataSetChanged()
+//    }
 
 
 

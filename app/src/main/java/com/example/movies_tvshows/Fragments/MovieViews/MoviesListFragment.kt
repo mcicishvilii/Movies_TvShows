@@ -33,6 +33,7 @@ class MoviesListFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var moviesAdapter: MoviesAdapter
     private val viewModel by viewModels<MoviesViewModel>()
+    private val viewModel1 by viewModels<LoginVeiwModel>()
 
 
     override fun onCreateView(
@@ -50,18 +51,23 @@ class MoviesListFragment : Fragment() {
         setUpRecyclerView()
 
 
-        viewModel.getPopularMoviesLiveData()
-        viewModel.getPopularMoviesLiveData().observe(viewLifecycleOwner){
-            moviesAdapter.updateList(it)
+
+        binding.tvTitle.setOnClickListener {
+            binding.tvTitle.text = viewModel1.getTokenLiveData().toString()
+
         }
 
 
 
+        viewModel.getPopularMoviesLiveData()
+        viewModel.getPopularMoviesLiveData().observe(viewLifecycleOwner){
+            moviesAdapter.updateList(it)
+        }
     }
 
     private fun setUpRecyclerView() {
 
-        moviesAdapter = MoviesAdapter(mutableListOf()).apply {
+        moviesAdapter = MoviesAdapter(mutableListOf(), /*mutableListOf()*/).apply {
             setOnItemCLickListener { result: Result1, i ->
                 parentFragmentManager.beginTransaction().apply {
                     replace(R.id.flContent, MoviesDetailsFragment.newInstance(
@@ -101,6 +107,10 @@ class MoviesListFragment : Fragment() {
             }
         }
 
+//        viewModel.getUseridLiveData().observe(viewLifecycleOwner){
+//            drawRecyclerView(it)
+//        }
+
 
 
         // შემდეგი 11 ხაზით ვაკეთებ რო როგორცკი ტექსტს დასერჩავ მაშნვე პარალელურად ამოაგდებს შედეგებს მარა არ გამომდის
@@ -124,6 +134,10 @@ class MoviesListFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
+
+//    fun drawRecyclerView(users:List<UserEntity>){
+//        moviesAdapter.updateAll(users)
+//    }
 
 
 }

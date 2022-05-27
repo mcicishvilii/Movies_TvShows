@@ -8,7 +8,7 @@ import com.example.movies_tvshows.Room.UserEntity
 class UsersRepo(context:Context) {
     private val database = UserDatabase.getDatabase(context)
 
-    suspend fun insertUser(userEntity: UserEntity){
+    suspend fun saveUser(userEntity: UserEntity){
         database.userDao().insertUser(userEntity)
     }
 

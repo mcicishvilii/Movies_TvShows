@@ -31,6 +31,7 @@ class LoginFragment:Fragment() {
     private var _binding: LoginLayoutBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<LoginVeiwModel>()
+    private val viewModel1 by viewModels<AddUserViewModel>()
 
 
     override fun onCreateView(
@@ -47,14 +48,21 @@ class LoginFragment:Fragment() {
 
 
 
-
         binding.btnLogin.setOnClickListener {
 
             val useri = binding.etUsername.text.toString()
             val paroli = binding.etPassword.text.toString()
-
-
             viewModel.logIn(useri,paroli)
+
+
+
+            val userID = UserEntity(
+                0,
+                5203,
+            )
+            viewModel1.saveUser(userID)
+
+
 
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.flContent, MoviesListFragment())
@@ -63,7 +71,7 @@ class LoginFragment:Fragment() {
             }
         }
 
-        //ეს არის სქიპბათონზე დაჭერის დროს რო უბრალოდ გადადის შემდეგ ფრაგმენტზე და ამიტო ჩაკეცილია
+        //ეს არის სქიპბათონზე დაჭერის დროს რო უბრალოდ გადადის შემდეგ ფრაგმენტზე
         binding.btnSkipButton.setOnClickListener {
             parentFragmentManager.beginTransaction().apply {
                 replace(R.id.flContent, MoviesListFragment())

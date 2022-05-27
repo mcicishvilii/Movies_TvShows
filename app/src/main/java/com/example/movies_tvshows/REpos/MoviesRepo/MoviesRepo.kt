@@ -17,6 +17,10 @@ class MoviesRepo {
 
 
 
+
+
+
+
     companion object {
         //this singleton
         private var instance: MoviesRepo? = null
