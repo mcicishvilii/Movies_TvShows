@@ -9,7 +9,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.movies_tvshows.Fragments.login.LoginFragment
 import com.example.movies_tvshows.Fragments.login.LoginVeiwModel
+import com.example.movies_tvshows.Fragments.watchlist.WatchlistFragment
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.R
 import com.example.movies_tvshows.databinding.MovieDetailsFragmentBinding
@@ -37,9 +39,11 @@ class MoviesDetailsFragment : Fragment(){
         binding.ivWatchlist.setOnClickListener {
             binding.ivWatchlist.setImageResource(R.drawable.ic_vectorbookmark)
             viewModel.addtoWatchlist()
-            Toast.makeText(requireContext(),"Movie was added",Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(),"Movie was added",Toast.LENGTH_SHORT).show()
 
         }
+
+
 
 
 

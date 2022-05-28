@@ -79,6 +79,15 @@
         android:id="@+id/rvMovies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/bnt_topRated" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_watchlist" />
+
+    <Button
+        android:id="@+id/btn_watchlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="watchlist"
+        app:layout_constraintTop_toBottomOf="@id/bnt_topRated"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

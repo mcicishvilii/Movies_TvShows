@@ -14,6 +14,7 @@ import com.example.movies_tvshows.Fragments.TVshowViews.TVshowsViewModel
 import com.example.movies_tvshows.Fragments.TVshowViews.TvShowsListFragment
 import com.example.movies_tvshows.Fragments.login.LoginFragment
 import com.example.movies_tvshows.Fragments.login.LoginVeiwModel
+import com.example.movies_tvshows.Fragments.watchlist.WatchlistFragment
 import com.example.movies_tvshows.Models.MovieModels.Result1
 import com.example.movies_tvshows.MoviesAdapter
 import com.example.movies_tvshows.R
@@ -48,9 +49,16 @@ class MoviesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         setUpRecyclerView()
 
-
+        binding.btnWatchlist.setOnClickListener {
+            parentFragmentManager.beginTransaction().apply {
+                replace(R.id.flContent, WatchlistFragment())
+                addToBackStack(WatchlistFragment::javaClass.name)
+                commit()
+            }
+        }
 
         binding.tvTitle.setOnClickListener {
             binding.tvTitle.text = viewModel1.getTokenLiveData().toString()

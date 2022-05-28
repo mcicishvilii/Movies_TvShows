@@ -20,7 +20,6 @@ import retrofit2.Response
 class LoginVeiwModel(application: Application): AndroidViewModel(application) {
 
     private var tokenliveData = MutableLiveData<String>()
-
     private val tokenRepo = TokenRepo.getInstance(application)
     var requestTokeni:String = ""
     private var gacematokeni:String = "misho"

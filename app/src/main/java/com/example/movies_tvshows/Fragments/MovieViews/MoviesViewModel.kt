@@ -20,11 +20,11 @@ class MoviesViewModel(application: Application): AndroidViewModel(application) {
     private val moviesLiveData = MutableLiveData<List<Result1>>()
     private val moviesLiveData1 = MutableLiveData<List<Result1>>()
     private val moviesLiveData2 = MutableLiveData<List<Result1>>()
-//    private val sessionIDLiveData = MutableLiveData<List<>>()
+    private val watchlistLiveData = MutableLiveData<List<Result1>>()
     private val moviesRepo = MoviesRepo.getInstance()
     private val tokenRepo = TokenRepo.getInstance(application)
-    private val usersRepo = UsersRepo.getInstance(application)
-//    private lateinit var userLiveData:LiveData<List<UserEntity>>
+
+
 
 
     init {
@@ -37,35 +37,39 @@ class MoviesViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    val apikey = "843c612d1207fdec63f0e6a5fd426d68"
+    val sessionID = "6feed1b64fb2d1d294ae52213434a9f66cb1dc47"
+
     fun addtoWatchlist() {
         viewModelScope.launch {
 
-            val watchlist = tokenRepo.addToWatchlist(
-                "843c612d1207fdec63f0e6a5fd426d68", addToWatchlistRequest =
-                AddToWatchlistRequest(
-                    278,
+
+            tokenRepo.addToWatchlist(
+                /*usersRepo.getAllUsers().toString()*/ "12399206",
+                addToWatchlistRequest = AddToWatchlistRequest(
+                    272,
                     "movie",
                     true
-                )
+                ),
+                apiKey = apikey,
+                sessionID = "6feed1b64fb2d1d294ae52213434a9f66cb1dc47"
             )
         }
     }
-
-
-//    fun getUseridLiveData():LiveData<List<UserEntity>>{
-//        return userLiveData!!
-//    }
-
-
-
-
-
 
     fun searchForMovie(query:String): LiveData<List<Result1>> {
         viewModelScope.launch {
             moviesLiveData2.postValue(moviesRepo.searchForMovie("843c612d1207fdec63f0e6a5fd426d68",query).results)
         }
         return moviesLiveData2
+    }
+
+
+    fun getWatchlistList():LiveData<List<Result1>>{
+        viewModelScope.launch {
+            watchlistLiveData.postValue(moviesRepo.showWatchlist("12399206",apikey,sessionID).results)
+        }
+        return watchlistLiveData
     }
 
     fun getPopularMoviesLiveData(): LiveData<List<Result1>> {
